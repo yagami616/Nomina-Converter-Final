@@ -452,10 +452,10 @@
             <tr><td>Codigo AutoEnrolamiento</td><td>Fijo: <strong>1234</strong> (siempre)</td><td><span class="tag tag-fixed">Fijo</span></td></tr>
             <tr><td>Tipo Documento</td><td>Fijo: <strong>RUT</strong></td><td><span class="tag tag-fixed">Fijo</span></td></tr>
             <tr><td>Numero Documento</td><td>RUT sin puntos con guion; si &lt;10M → 0 antepuesto</td><td><span class="tag tag-calc">Calculado</span></td></tr>
-            <tr><td>Clave Comensal</td><td>Fijo: <strong>1234</strong></td><td><span class="tag tag-fixed">Fijo</span></td></tr>
+            <tr><td>Clave Comensal</td><td>Primeros 4 dígitos del RUT del comensal</td><td><span class="tag tag-calc">Calculado</span></td></tr>
             <tr><td>Nombres</td><td>NombreComensal → primer segmento (mayúsculas)</td><td><span class="tag tag-calc">Calculado</span></td></tr>
-            <tr><td>Apellido Paterno</td><td>ApellidoPaterno o parsing del nombre completo</td><td><span class="tag tag-calc">Calculado</span></td></tr>
-            <tr><td>Apellido Materno</td><td>ApellidoMaterno o parsing del nombre completo</td><td><span class="tag tag-calc">Calculado</span></td></tr>
+            <tr><td>Apellido Paterno</td><td>ApellidoPaterno o parsing del nombre; vacío → <strong>.</strong></td><td><span class="tag tag-calc">Calculado</span></td></tr>
+            <tr><td>Apellido Materno</td><td>ApellidoMaterno o parsing del nombre; vacío → <strong>.</strong></td><td><span class="tag tag-calc">Calculado</span></td></tr>
             <tr><td>Porcentaje Descuento</td><td>Fijo: <strong>0</strong></td><td><span class="tag tag-fixed">Fijo</span></td></tr>
             <tr><td>Activo</td><td>Fijo: <strong>1</strong></td><td><span class="tag tag-fixed">Fijo</span></td></tr>
             <tr><td>Correo</td><td>Vacío (opcional)</td><td><span class="tag tag-empty">Vacío</span></td></tr>
@@ -724,7 +724,7 @@ function mapRows(rows, autoVal) {
     const apMatRaw   = get(row, ['ApellidoMaterno','Apellido Materno']);
 
     const rutFmt = formatRut(rutRaw);
-    const clave  = 1234;
+    const clave  = claveComensal(rutRaw);
     const { nombres, apPaterno, apMaterno } = parseName(nombreFull, apPatRaw, apMatRaw);
 
     return {
@@ -738,8 +738,8 @@ function mapRows(rows, autoVal) {
       'Numero Documento':       rutFmt,
       'Clave Comensal':         clave,
       'Nombres':                nombres.toUpperCase(),
-      'Apellido Paterno':       apPaterno.toUpperCase(),
-      'Apellido Materno':       apMaterno.toUpperCase(),
+      'Apellido Paterno':       (apPaterno.trim() || '.').toUpperCase(),
+      'Apellido Materno':       (apMaterno.trim() || '.').toUpperCase(),
       'Porcentaje Descuento':   0,
       'Activo':                 1,
       'Correo':                 ''
