@@ -379,11 +379,244 @@
     border-top: 1px solid var(--border2); padding-top: 24px;
   }
 
+  /* ── Nav tabs ── */
+  .nav-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    animation: fadeDown 0.5s ease both;
+  }
+
+  .nav-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    transition: all 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .nav-tab:hover { border-color: var(--accent2); color: var(--accent); }
+
+  .nav-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(26,79,138,0.25);
+  }
+
+  .nav-tab .tab-icon { font-size: 15px; }
+
+  /* ── Checklist ── */
+  .checklist-wrap { display: none; animation: fadeUp 0.4s ease both; }
+  .checklist-wrap.active { display: block; }
+  .converter-wrap { display: block; }
+  .converter-wrap.hidden { display: none; }
+
+  .checklist-intro {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: var(--accent-light);
+    border: 1px solid #c5d9f0;
+    border-radius: var(--radius);
+    border-left: 3px solid var(--accent);
+  }
+
+  .cl-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .cl-section.completed { border-color: #b7dcc7; }
+
+  .cl-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .cl-header:hover { background: var(--surface2); }
+
+  .cl-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    border: 2px solid #c5d9f0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: all 0.25s;
+  }
+
+  .cl-section.completed .cl-num {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+  }
+
+  .cl-title {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .cl-section.completed .cl-title { color: var(--success); }
+
+  .cl-arrow {
+    font-size: 12px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .cl-section.open .cl-arrow { transform: rotate(180deg); }
+
+  .cl-body {
+    display: none;
+    padding: 0 20px 18px 64px;
+    border-top: 1px solid var(--border2);
+  }
+
+  .cl-section.open .cl-body { display: block; }
+
+  .cl-steps { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+  .cl-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .cl-step:hover { background: var(--surface2); border-color: var(--border2); }
+
+  .cl-check {
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    background: #fff;
+  }
+
+  .cl-step.checked .cl-check {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .cl-check-icon {
+    display: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .cl-step.checked .cl-check-icon { display: block; }
+
+  .cl-step-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    flex: 1;
+    transition: color 0.2s;
+  }
+
+  .cl-step.checked .cl-step-text {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: #b7dcc7;
+  }
+
+  .cl-step-text .note {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-style: italic;
+    text-decoration: none;
+  }
+
+  .cl-step.checked .cl-step-text .note { text-decoration: none; }
+
+  /* Progress bar for checklist */
+  .cl-progress-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .cl-progress-info { flex: 1; }
+  .cl-progress-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .cl-progress-bar-bg { background: var(--border2); border-radius: 999px; height: 6px; overflow: hidden; }
+  .cl-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--success));
+    border-radius: 999px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .cl-progress-pct {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 48px;
+    text-align: right;
+  }
+
+  .cl-reset-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.2s;
+  }
+  .cl-reset-btn:hover { border-color: var(--warn); color: var(--warn); }
+
   @media (max-width: 600px) {
     .stats.show { grid-template-columns: repeat(2, 1fr); }
     .card { padding: 22px 16px; }
     header { flex-direction: column; align-items: flex-start; }
     .header-badge { display: none; }
+    .cl-body { padding-left: 20px; }
   }
 </style>
 </head>
@@ -402,7 +635,174 @@
     </div>
   </header>
 
-  <div class="card">
+  <!-- Nav tabs -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" id="tabConverter" onclick="switchTab('converter')">
+      <span class="tab-icon">⚡</span> Conversor
+    </button>
+    <button class="nav-tab" id="tabChecklist" onclick="switchTab('checklist')">
+      <span class="tab-icon">✅</span> Creación de Casino
+    </button>
+  </div>
+
+  <!-- ══════════ CHECKLIST VIEW ══════════ -->
+  <div class="checklist-wrap" id="checklistWrap">
+
+    <div class="cl-progress-wrap">
+      <div class="cl-progress-info">
+        <div class="cl-progress-title">Progreso de configuración</div>
+        <div class="cl-progress-bar-bg">
+          <div class="cl-progress-bar-fill" id="clProgressFill"></div>
+        </div>
+      </div>
+      <div class="cl-progress-pct" id="clProgressPct">0%</div>
+      <button class="cl-reset-btn" onclick="resetChecklist()">↺ Reiniciar</button>
+    </div>
+
+    <p class="checklist-intro">
+      Sigue estos pasos en orden para configurar un nuevo casino en el sistema. Marca cada paso al completarlo.
+    </p>
+
+    <!-- Paso 1 -->
+    <div class="cl-section open" id="cls-1">
+      <div class="cl-header" onclick="toggleSection(1)">
+        <div class="cl-num">1</div>
+        <div class="cl-title">Crear el Casino</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Maestros</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Luego a <strong>Casino</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Clic en <strong>Agregar nuevo</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ingresa el <strong>Código</strong> (centro de costo) y <strong>Descripción</strong> (nombre)</div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Marca la casilla <strong>Sincronización Habilitada</strong><span class="note">Una vez creado, búscalo en la lista y vuelve a activar la sincronización.</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="cl-section" id="cls-2">
+      <div class="cl-header" onclick="toggleSection(2)">
+        <div class="cl-num">2</div>
+        <div class="cl-title">Crear el Tótem</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Maestros</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Luego a <strong>Máquina</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Clic en <strong>Agregar nuevo</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ingresa <strong>Código</strong> (ej: ANCE1133) y <strong>Descripción</strong> (ej: Tótem El Rosal)</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="cl-section" id="cls-3">
+      <div class="cl-header" onclick="toggleSection(3)">
+        <div class="cl-num">3</div>
+        <div class="cl-title">Crear la Empresa</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Verifica que la empresa <strong>no exista</strong> previamente</div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Casino</strong> → <strong>Listado de Empresa</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Clic en <strong>Nueva Empresa</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Rellena <strong>RUT</strong> y <strong>Razón Social</strong> (nombre de la empresa)</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 4 -->
+    <div class="cl-section" id="cls-4">
+      <div class="cl-header" onclick="toggleSection(4)">
+        <div class="cl-num">4</div>
+        <div class="cl-title">Asignar Casino a Perfil</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Seguridad</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Luego a <strong>Asignación de Usuario</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Busca tu <strong>usuario</strong> y haz clic en <strong>Asignar</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Agrega el casino a tu perfil con el rol correspondiente <strong>(Soporte)</strong></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 5 -->
+    <div class="cl-section" id="cls-5">
+      <div class="cl-header" onclick="toggleSection(5)">
+        <div class="cl-num">5</div>
+        <div class="cl-title">Creación de Centros de Costo</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Casino</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Luego a <strong>Administración de Centro de Costo</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Clic en <strong>Agregar Centro de Costo</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ingresa <strong>Código</strong> y <strong>Descripción</strong></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 6 -->
+    <div class="cl-section" id="cls-6">
+      <div class="cl-header" onclick="toggleSection(6)">
+        <div class="cl-num">6</div>
+        <div class="cl-title">Administrar Casino</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Casino</strong> → <strong>Administración de Casino</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Agrega las <strong>empresas</strong> ligadas al casino (estándar)</div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Pincha en <strong>Servicio</strong> y agrega los servicios correspondientes</div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Pincha en <strong>Máquinas Tótem</strong> y agrega el tótem creado anteriormente</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 7 -->
+    <div class="cl-section" id="cls-7">
+      <div class="cl-header" onclick="toggleSection(7)">
+        <div class="cl-num">7</div>
+        <div class="cl-title">Activación de Servicios</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Casino</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Selecciona la <strong>empresa</strong> que desees del casino</div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Activa los <strong>servicios</strong> previamente creados</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paso 8 -->
+    <div class="cl-section" id="cls-8">
+      <div class="cl-header" onclick="toggleSection(8)">
+        <div class="cl-num">8</div>
+        <div class="cl-title">Agregar Comensales</div>
+        <span class="cl-arrow">▼</span>
+      </div>
+      <div class="cl-body">
+        <ul class="cl-steps">
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Ve a <strong>Casino</strong> → <strong>Administración de Comensales</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Clic en <strong>Importar Masivo</strong></div></li>
+          <li class="cl-step" onclick="toggleStep(this)"><div class="cl-check"><span class="cl-check-icon">✓</span></div><div class="cl-step-text">Pincha en <strong>Elegir Archivo</strong> y carga el archivo de nómina generado</div></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- ══════════ END CHECKLIST ══════════ -->
+
+  <!-- ══════════ CONVERTER VIEW ══════════ -->
+  <div class="converter-wrap" id="converterWrap">
 
     <!-- 01 -->
     <div class="section-label">01 — Configuración general</div>
@@ -513,7 +913,8 @@
   </div>
 
   <footer>Casino Nómina Converter · v2.0 · Formato Importador Comensal v2</footer>
-</div>
+</div><!-- end converter-wrap -->
+</div><!-- end container -->
 
 <script>
 let selectedFile = null;
@@ -814,7 +1215,66 @@ function buildWorkbook(data) {
   return wb;
 }
 
-// ── UI helpers
+// ── Tab switching
+function switchTab(tab) {
+  const converterWrap = document.getElementById('converterWrap');
+  const checklistWrap = document.getElementById('checklistWrap');
+  const tabConverter  = document.getElementById('tabConverter');
+  const tabChecklist  = document.getElementById('tabChecklist');
+
+  if (tab === 'converter') {
+    converterWrap.classList.remove('hidden');
+    checklistWrap.classList.remove('active');
+    tabConverter.classList.add('active');
+    tabChecklist.classList.remove('active');
+  } else {
+    converterWrap.classList.add('hidden');
+    checklistWrap.classList.add('active');
+    tabConverter.classList.remove('active');
+    tabChecklist.classList.add('active');
+  }
+}
+
+// ── Checklist: toggle section open/close
+function toggleSection(n) {
+  const sec = document.getElementById('cls-' + n);
+  sec.classList.toggle('open');
+}
+
+// ── Checklist: toggle individual step
+function toggleStep(el) {
+  el.classList.toggle('checked');
+  updateChecklistProgress();
+  updateSectionCompletion();
+}
+
+function updateChecklistProgress() {
+  const all     = document.querySelectorAll('.cl-step');
+  const done    = document.querySelectorAll('.cl-step.checked');
+  const pct     = all.length ? Math.round((done.length / all.length) * 100) : 0;
+  document.getElementById('clProgressFill').style.width = pct + '%';
+  document.getElementById('clProgressPct').textContent  = pct + '%';
+}
+
+function updateSectionCompletion() {
+  for (let n = 1; n <= 8; n++) {
+    const sec   = document.getElementById('cls-' + n);
+    const steps = sec.querySelectorAll('.cl-step');
+    const done  = sec.querySelectorAll('.cl-step.checked');
+    if (steps.length > 0 && done.length === steps.length) {
+      sec.classList.add('completed');
+    } else {
+      sec.classList.remove('completed');
+    }
+  }
+}
+
+function resetChecklist() {
+  if (!confirm('¿Reiniciar todos los pasos del checklist?')) return;
+  document.querySelectorAll('.cl-step').forEach(s => s.classList.remove('checked'));
+  updateChecklistProgress();
+  updateSectionCompletion();
+}
 function setProgress(show, pct=0, label='') {
   if (show) { progressWrap.classList.add('show'); progressFill.style.width = pct+'%'; progressLabel.textContent = label; }
   else       { progressWrap.classList.remove('show'); progressFill.style.width = '0%'; }
